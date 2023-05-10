@@ -1,9 +1,11 @@
+import { EEmailEnum } from "../enums/email.enum";
 import { ApiError } from "../errors/api.error";
 import { Token } from "../models/Token.model";
 import { User } from "../models/User.model";
 import { ICredentials } from "../types/auth.types";
 import { ITokenPair, ITokenPayload } from "../types/token.types";
 import { IUser } from "../types/user.types";
+import { emailService } from "./email.service";
 import { oauthService } from "./oauth.service";
 import { tokenService } from "./token.service";
 
@@ -17,6 +19,8 @@ class AuthService {
         ...body,
         password: hashedPassword,
       });
+
+      await emailService.sendEmail(body.email, EEmailEnum.REGISTER);
     } catch (e) {
       throw new ApiError(e.message, e.status);
     }

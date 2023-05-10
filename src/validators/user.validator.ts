@@ -19,7 +19,7 @@ export class UserValidator {
   private static account = Joi.valid(...Object.values(EUserAccount));
 
   static create = Joi.object({
-    name: this.firstName.required(),
+    firstName: this.firstName.required(),
     surname: this.surname.required(),
     patronymic: this.patronymic.required(),
     age: this.age.required(),
