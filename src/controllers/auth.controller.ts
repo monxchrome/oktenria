@@ -46,6 +46,32 @@ class AuthController {
       next(e);
     }
   }
+
+  public async activateEmail(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { user } = req.res.locals;
+      await authService.activateEmail(user);
+
+      res.sendStatus(200);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async setActivate(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { user } = req.res.locals;
+      await authService.setActivateEmail(user._id);
+
+      res.sendStatus(200);
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export const authController = new AuthController();

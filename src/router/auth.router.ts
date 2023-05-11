@@ -27,3 +27,15 @@ router.post(
   authMiddleware.checkRefreshToken,
   authController.refresh
 );
+
+router.post(
+  "/activate",
+  userMiddleware.getDynamicallyOrThrow("email"),
+  authController.activateEmail
+);
+
+router.put(
+  "/activate/:token",
+  userMiddleware.getDynamicallyOrThrow("email"),
+  authController.setActivate
+);

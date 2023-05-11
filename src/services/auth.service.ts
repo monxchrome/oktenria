@@ -1,5 +1,9 @@
+import { EActionToken } from "../enums/action-token.enum";
 import { EEmailEnum } from "../enums/email.enum";
+import { EUserAccount } from "../enums/user-account.enum";
+import { EUserStatus } from "../enums/user-status.enum";
 import { ApiError } from "../errors/api.error";
+import { Action } from "../models/Action.model";
 import { Token } from "../models/Token.model";
 import { User } from "../models/User.model";
 import { ICredentials } from "../types/auth.types";
@@ -72,6 +76,38 @@ class AuthService {
       ]);
 
       return tokenPair;
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async activateEmail(user: IUser): Promise<void> {
+    try {
+      const actionToken = tokenService.generateActionToken(
+        { _id: user._id },
+        EActionToken.activate
+      );
+
+      await Action.create({
+        actionToken,
+        tokenType: EActionToken.activate,
+        _user_id: user._id,
+      });
+
+      await emailService.sendEmail(user.email, EEmailEnum.ACTIVATE_EMAIL, {
+        token: actionToken,
+      });
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async setActivateEmail(id: string): Promise<void> {
+    try {
+      await User.updateOne(
+        { _id: id },
+        { account: EUserAccount.premium, status: EUserStatus.active }
+      );
     } catch (e) {
       throw new ApiError(e.message, e.status);
     }

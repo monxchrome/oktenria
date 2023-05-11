@@ -16,4 +16,9 @@ export const configs = {
 
   NO_REPLY_EMAIL: process.env.NO_REPLY_EMAIL,
   NO_REPLY_PASSWORD: process.env.NO_REPLY_PASSWORD,
+
+  ACTIVATE_SECRET: process.env.ACTIVATE_SECRET,
+  FORGOT_SECRET: process.env.FORGOT_SECRET,
+
+  PRIVAT_BANK_API: process.env.PRIVAT_BANK_API,
 };
