@@ -12,7 +12,7 @@ const privatBankParser = async () => {
   const usdRate = Number(data.find((item: any) => item.ccy === "USD").sale);
   const eurRate = Number(data.find((item: any) => item.ccy === "EUR").sale);
 
-  await Car.updateMany({}, [{ $set: { price_uah: `$$currency` } }]);
+  await Car.updateMany({}, [{ $set: { price_uah: `$currency` } }]);
 
   await Car.updateMany({ price: "USD" }, { $mul: { price_uah: usdRate } });
   await Car.updateMany({ price: "EUR" }, { $mul: { price_uah: eurRate } });

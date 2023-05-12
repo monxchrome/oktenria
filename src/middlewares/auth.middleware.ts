@@ -31,6 +31,34 @@ class AuthMiddleware {
       next(e);
     }
   }
+
+  public async checkAccessToken(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const accessToken = req.get("Authorization");
+
+      if (!accessToken) {
+        throw new ApiError("Access token has been axpired", 404);
+      }
+
+      const jwtPayload = tokenService.checkToken(accessToken);
+      const tokenData = await Token.findOne({ accessToken }).populate(
+        "_user_id"
+      );
+
+      if (!tokenData) {
+        throw new ApiError("Access token is not valid", 401);
+      }
+
+      req.res.locals = { tokenData, jwtPayload, user: tokenData._user_id };
+      next();
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export const authMiddleware = new AuthMiddleware();
