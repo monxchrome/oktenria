@@ -3,6 +3,7 @@ import { Router } from "express";
 import { carController } from "../controllers/car.controller";
 import { authMiddleware } from "../middlewares/auth.middleware";
 import { carMiddleware } from "../middlewares/car.middleware";
+import { userMiddleware } from "../middlewares/user.middleware";
 
 const router = Router();
 
@@ -13,6 +14,7 @@ router.get("/", carController.getAll);
 router.post(
   "/",
   authMiddleware.checkAccessToken,
+  userMiddleware.isSeller,
   carMiddleware.isValidCreate,
   carController.create
 );

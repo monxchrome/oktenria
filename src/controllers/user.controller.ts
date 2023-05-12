@@ -72,6 +72,51 @@ class UserController {
       next(e);
     }
   }
+
+  public async getSeller(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response<ICommonResponse<IUser>>> {
+    const { userId } = req.params;
+
+    const sellerUser = await userService.sellerRole(userId);
+
+    return res.json({
+      message: "User has seller role",
+      data: sellerUser,
+    });
+  }
+
+  public async getManager(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response<ICommonResponse<IUser>>> {
+    const { userId } = req.params;
+
+    const managerUser = await userService.managerRole(userId);
+
+    return res.json({
+      message: "User has manager role",
+      data: managerUser,
+    });
+  }
+
+  public async getAdmin(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response<ICommonResponse<IUser>>> {
+    const { userId } = req.params;
+
+    const adminUser = await userService.adminRole(userId);
+
+    return res.json({
+      message: "User has admin role",
+      data: adminUser,
+    });
+  }
 }
 
 export const userController = new UserController();

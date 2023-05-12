@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 
 import { ApiError } from "../errors/api.error";
 import { Car } from "../models/Car.model";
-import { ICar } from "../types/car.tyes";
+import { ICar } from "../types/car.types";
 import { IPaginationResponse, IQuery } from "../types/pagination.types";
 
 class CarService {

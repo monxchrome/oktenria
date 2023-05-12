@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { carService } from "../services/car.service";
-import { ICar } from "../types/car.tyes";
+import { ICar } from "../types/car.types";
 import { ICommonResponse } from "../types/common.types";
 import { IQuery } from "../types/pagination.types";
 import { ITokenPayload } from "../types/token.types";
@@ -85,7 +85,7 @@ class CarController {
       const deleteCar = await carService.delete(carId);
 
       return res.json({
-        message: "User has been deleted!",
+        message: "Car has been deleted!",
         data: deleteCar,
       });
     } catch (e) {

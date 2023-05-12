@@ -5,6 +5,7 @@ import { ApiError } from "../errors/api.error";
 import { Car } from "../models/Car.model";
 import { CarValidator } from "../validators/car.validator";
 
+let putCounter = 0;
 class CarMiddleware {
   public async isValidCreate(
     req: Request,
@@ -37,12 +38,11 @@ class CarMiddleware {
         return next(new ApiError(error.message, 405));
       }
 
-      const putCounter = 0;
-
       if (req.method === "PUT") {
         if (putCounter >= 3) {
           throw new ApiError("You have limit for edit this car", 403);
         }
+        putCounter++;
       }
 
       req.body = value;

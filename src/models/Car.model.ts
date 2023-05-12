@@ -9,7 +9,7 @@ import { ECarPrice } from "../enums/car-price.enum";
 import { ECarState } from "../enums/car-state.enum";
 import { ETransportType } from "../enums/car-transport-type.enum";
 import { ECarType } from "../enums/car-type.enum";
-import { ICar } from "../types/car.tyes";
+import { ICar } from "../types/car.types";
 import { User } from "./User.model";
 
 export const carSchema = new Schema(

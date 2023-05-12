@@ -56,6 +56,30 @@ class UserService {
       throw new ApiError(e.message, e.status);
     }
   }
+
+  public async sellerRole(userId: string): Promise<void> {
+    try {
+      await User.updateOne({ _id: userId }, { $set: { role: "seller" } });
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async managerRole(userId: string): Promise<void> {
+    try {
+      await User.updateOne({ _id: userId }, { $set: { role: "manager" } });
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async adminRole(userId: string): Promise<void> {
+    try {
+      await User.updateOne({ _id: userId }, { $set: { role: "admin" } });
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
 }
 
 export const userService = new UserService();

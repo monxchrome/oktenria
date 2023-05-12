@@ -1,9 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-import { isObjectIdOrHexString } from "mongoose";
+import { isObjectIdOrHexString, Types } from "mongoose";
 
 import { ApiError } from "../errors/api.error";
 import { User } from "../models/User.model";
 import { IRequest } from "../types/common.types";
+import { ITokenPayload } from "../types/token.types";
+import { IUser } from "../types/user.types";
 import { AuthValidator } from "../validators/auth.validator";
 import { UserValidator } from "../validators/user.validator";
 
@@ -148,6 +150,47 @@ class UserMiddleware {
         next(e);
       }
     };
+  }
+
+  public async isSeller(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { _id } = req.res.locals.jwtPayload as ITokenPayload;
+
+      const user = (await User.findOne({
+        _id: new Types.ObjectId(_id),
+      })) as IUser;
+
+      if (user.role === "buyer") {
+        throw new ApiError("You dont have permission", 422);
+      }
+      next();
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async visits(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { userId } = req.params;
+
+      await User.findOneAndUpdate(
+        { _id: userId },
+        { $inc: { count: 1 } },
+        { upsert: true }
+      );
+
+      next();
+    } catch (e) {
+      next(e);
+    }
   }
 }
 

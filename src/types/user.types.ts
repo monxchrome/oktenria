@@ -1,5 +1,6 @@
 export interface IUser {
   _id?: string;
+  count: number;
   firstName: string;
   surname: string;
   patronymic: string;
@@ -9,4 +10,5 @@ export interface IUser {
   password: string;
   status: string;
   account: string;
+  role: string;
 }

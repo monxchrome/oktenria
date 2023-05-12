@@ -7,6 +7,10 @@ import { IUser } from "../types/user.types";
 
 export const userSchema = new Schema(
   {
+    count: {
+      type: Number,
+      default: 0,
+    },
     firstName: {
       type: String,
       required: [true, "Name is required"],
