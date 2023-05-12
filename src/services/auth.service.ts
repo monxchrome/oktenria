@@ -106,7 +106,11 @@ class AuthService {
     try {
       await User.updateOne(
         { _id: id },
-        { account: EUserAccount.premium, status: EUserStatus.active }
+        {
+          account: EUserAccount.premium,
+          status: EUserStatus.active,
+          premiumExpiration: new Date(),
+        }
       );
     } catch (e) {
       throw new ApiError(e.message, e.status);

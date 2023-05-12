@@ -62,6 +62,9 @@ export const userSchema = new Schema(
       enum: EUserRole,
       default: EUserRole.buyer,
     },
+    premiumExpiration: {
+      type: Date,
+    },
   },
   { versionKey: false, timestamps: true }
 );

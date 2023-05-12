@@ -11,4 +11,5 @@ export interface IUser {
   status: string;
   account: string;
   role: string;
+  premiumExpiration: Date;
 }
