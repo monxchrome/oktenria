@@ -4,6 +4,7 @@ import { EUserAccount } from "../enums/user-account.enum";
 import { EUserStatus } from "../enums/user-status.enum";
 import { ApiError } from "../errors/api.error";
 import { Action } from "../models/Action.model";
+import { oldPassword } from "../models/Old.password.model";
 import { Token } from "../models/Token.model";
 import { User } from "../models/User.model";
 import { ICredentials } from "../types/auth.types";
@@ -12,7 +13,6 @@ import { IUser } from "../types/user.types";
 import { emailService } from "./email.service";
 import { oauthService } from "./oauth.service";
 import { tokenService } from "./token.service";
-import {oldPassword} from "../models/Old.password.model";
 
 class AuthService {
   public async register(body: IUser): Promise<void> {
@@ -184,6 +184,23 @@ class AuthService {
       });
 
       await oldPassword.create({ _user_id: user._id, password: user.password });
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async setForgotPassword(
+    password: string,
+    id: string,
+    token: string
+  ): Promise<void> {
+    try {
+      const hashedPassword = await oauthService.hash(password);
+      await User.updateOne({ _id: id }, { password: hashedPassword });
+      await Action.deleteOne({
+        actionToken: token,
+        tokenType: EActionToken.forgot,
+      });
     } catch (e) {
       throw new ApiError(e.message, e.status);
     }

@@ -67,6 +67,25 @@ class TokenService {
       throw new ApiError("Action token not valid", 401);
     }
   }
+
+  public checkActionToken(token: string, tokenType: EActionToken) {
+    try {
+      let secret = "";
+
+      switch (tokenType) {
+        case EActionToken.forgot:
+          secret = configs.FORGOT_SECRET;
+          break;
+        case EActionToken.activate:
+          secret = configs.ACTIVATE_SECRET;
+          break;
+      }
+
+      return jwt.verify(token, secret) as IActionTokenPayload;
+    } catch (e) {
+      throw new ApiError("Action token is not valid", 401);
+    }
+  }
 }
 
 export const tokenService = new TokenService();
