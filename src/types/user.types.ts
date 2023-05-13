@@ -13,4 +13,5 @@ export interface IUser {
   role: string;
   premiumExpiration: Date;
   auto_show: string;
+  avatar?: string;
 }

@@ -56,3 +56,11 @@ router.put(
   userMiddleware.getByIdOrThrow,
   userController.getAdmin
 );
+
+router.put(
+  "/:userId/avatar",
+  authMiddleware.checkAccessToken,
+  userMiddleware.isIdValid,
+  userMiddleware.getByIdOrThrow,
+  userController.uploadAvatar
+);

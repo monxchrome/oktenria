@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from "express";
+import { UploadedFile } from "express-fileupload";
 
 import { userService } from "../services";
 import { ICommonResponse, IQuery, IUser } from "../types";
+import {configs} from "../config";
 
 class UserController {
   public async getAll(
@@ -114,6 +116,24 @@ class UserController {
       message: "User has admin role",
       data: adminUser,
     });
+  }
+
+  public async uploadAvatar(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response<void>> {
+    try {
+      console.log(configs);
+      const { userId } = req.params;
+      const avatar = req.files.avatar as UploadedFile;
+
+      const user = userService.uploadAvatar(avatar, userId);
+
+      return res.status(201).json(user);
+    } catch (e) {
+      next(e);
+    }
   }
 }
 
