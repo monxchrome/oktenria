@@ -35,4 +35,9 @@ export class UserValidator {
     phone: this.phone,
     email: this.email,
   });
+
+  static changePassword = Joi.object({
+    oldPassword: this.password,
+    newPassword: this.password,
+  });
 }

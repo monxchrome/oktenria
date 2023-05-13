@@ -72,6 +72,26 @@ class AuthController {
       next(e);
     }
   }
+
+  public async changePassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { tokenData } = req.res.locals;
+
+      const { oldPassword, newPassword } = req.body;
+
+      await authService.changePassword(
+        tokenData._user_id,
+        oldPassword,
+        newPassword
+      );
+
+      res.status(200).json({
+        message: "Password has been changed!",
+      });
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export const authController = new AuthController();

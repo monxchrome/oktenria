@@ -39,3 +39,10 @@ router.put(
   userMiddleware.getDynamicallyOrThrow("email"),
   authController.setActivate
 );
+
+router.post(
+  "/password/change",
+  authMiddleware.checkAccessToken,
+  authMiddleware.isValidChangePassword,
+  authController.changePassword
+);

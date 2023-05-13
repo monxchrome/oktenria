@@ -4,6 +4,7 @@ import { EToken } from "../enums/token-enum";
 import { ApiError } from "../errors/api.error";
 import { Token } from "../models/Token.model";
 import { tokenService } from "../services/token.service";
+import { UserValidator } from "../validators/user.validator";
 
 class AuthMiddleware {
   public async checkRefreshToken(
@@ -54,6 +55,24 @@ class AuthMiddleware {
       }
 
       req.res.locals = { tokenData, jwtPayload, user: tokenData._user_id };
+      next();
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async isValidChangePassword(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { error } = UserValidator.changePassword.validate(req.body);
+
+      if (error) {
+        throw new ApiError(error.message, 409);
+      }
+
       next();
     } catch (e) {
       next(e);
