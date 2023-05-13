@@ -1,8 +1,8 @@
 import axios from "axios";
 import { CronJob } from "cron";
 
-import { configs } from "../config/config";
-import { Car } from "../models/Car.model";
+import { configs } from "../config";
+import { Car } from "../models";
 
 const privatBankParser = async () => {
   const url = configs.PRIVAT_BANK_API;

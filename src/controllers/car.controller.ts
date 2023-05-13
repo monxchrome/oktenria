@@ -1,11 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
-import { carService } from "../services/car.service";
-import { ICar } from "../types/car.types";
-import { ICommonResponse } from "../types/common.types";
-import { IQuery } from "../types/pagination.types";
-import { ITokenPayload } from "../types/token.types";
-import { IUser } from "../types/user.types";
+import { carService } from "../services";
+import { ICar, ICommonResponse, IQuery, ITokenPayload, IUser } from "../types";
 
 class CarController {
   public async getAll(

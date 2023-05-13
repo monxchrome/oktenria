@@ -1,14 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 
-import { EActionToken } from "../enums/action-token.enum";
-import { EToken } from "../enums/token-enum";
-import { ApiError } from "../errors/api.error";
-import { Action } from "../models/Action.model";
-import { oldPassword } from "../models/Old.password.model";
-import { Token } from "../models/Token.model";
-import { oauthService } from "../services/oauth.service";
-import { tokenService } from "../services/token.service";
-import { UserValidator } from "../validators/user.validator";
+import { EActionToken, EToken } from "../enums";
+import { ApiError } from "../errors";
+import { Action, oldPassword, Token } from "../models";
+import { oauthService, tokenService } from "../services";
+import { UserValidator } from "../validators";
 
 class AuthMiddleware {
   public async checkRefreshToken(
