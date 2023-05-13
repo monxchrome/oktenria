@@ -93,7 +93,11 @@ class AuthController {
     }
   }
 
-  public async changeEmail(req: Request, res: Response, next: NextFunction) {
+  public async changeEmail(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
     try {
       const { tokenData } = req.res.locals;
 
@@ -109,6 +113,19 @@ class AuthController {
       res.status(200).json({
         message: "Email has been changed!",
       });
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async forgotPassword(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const { user } = req.res.locals;
+      await authService.forgotPassword(user);
     } catch (e) {
       next(e);
     }

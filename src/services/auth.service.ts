@@ -12,6 +12,7 @@ import { IUser } from "../types/user.types";
 import { emailService } from "./email.service";
 import { oauthService } from "./oauth.service";
 import { tokenService } from "./token.service";
+import {oldPassword} from "../models/Old.password.model";
 
 class AuthService {
   public async register(body: IUser): Promise<void> {
@@ -160,6 +161,29 @@ class AuthService {
       await User.updateOne({ _id: user._id }, { email: newEmail });
 
       await emailService.sendEmail(user.email, EEmailEnum.CHANGE_EMAIL);
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async forgotPassword(user: IUser): Promise<void> {
+    try {
+      const actionToken = tokenService.generateActionToken(
+        { _id: user._id },
+        EActionToken.forgot
+      );
+
+      await Action.create({
+        actionToken,
+        tokenType: EActionToken.forgot,
+        _user_id: user._id,
+      });
+
+      await emailService.sendEmail(user.email, EEmailEnum.FORGOT_PASSWORD, {
+        token: actionToken,
+      });
+
+      await oldPassword.create({ _user_id: user._id, password: user.password });
     } catch (e) {
       throw new ApiError(e.message, e.status);
     }

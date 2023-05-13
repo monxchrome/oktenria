@@ -48,6 +48,12 @@ router.post(
 );
 
 router.post(
+  "password/forgot",
+  userMiddleware.getDynamicallyOrThrow("email"),
+  authController.forgotPassword
+);
+
+router.post(
   "/email/change",
   authMiddleware.checkAccessToken,
   authMiddleware.isValidChangeEmail,
