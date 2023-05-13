@@ -1,15 +1,17 @@
 import { model, Schema, Types } from "mongoose";
 
-import { EBodyType } from "../enums/car-body-type.enum";
-import { ECarBrand } from "../enums/car-brand.enum";
-import { ECarColor } from "../enums/car-color.enum";
-import { ECarCountry } from "../enums/car-country.enum";
-import { ECarFuel } from "../enums/car-fuel.enum";
-import { ECarPrice } from "../enums/car-price.enum";
-import { ECarState } from "../enums/car-state.enum";
-import { ETransportType } from "../enums/car-transport-type.enum";
-import { ECarType } from "../enums/car-type.enum";
-import { ICar } from "../types/car.types";
+import {
+  EBodyType,
+  ECarBrand,
+  ECarColor,
+  ECarCountry,
+  ECarFuel,
+  ECarPrice,
+  ECarState,
+  ECarType,
+  ETransportType,
+} from "../enums";
+import { ICar } from "../types";
 import { User } from "./User.model";
 
 export const carSchema = new Schema(

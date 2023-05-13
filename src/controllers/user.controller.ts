@@ -1,9 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
-import { userService } from "../services/user.service";
-import { ICommonResponse } from "../types/common.types";
-import { IQuery } from "../types/pagination.types";
-import { IUser } from "../types/user.types";
+import { userService } from "../services";
+import { ICommonResponse, IQuery, IUser } from "../types";
 
 class UserController {
   public async getAll(

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { isObjectIdOrHexString } from "mongoose";
 
-import { ApiError } from "../errors/api.error";
-import { Car } from "../models/Car.model";
-import { CarValidator } from "../validators/car.validator";
+import { ApiError } from "../errors";
+import { Car } from "../models";
+import { CarValidator } from "../validators";
 
 let putCounter = 0;
 class CarMiddleware {

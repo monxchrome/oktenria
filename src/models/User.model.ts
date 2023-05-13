@@ -1,9 +1,7 @@
 import { model, Schema } from "mongoose";
 
-import { EUserAccount } from "../enums/user-account.enum";
-import { EUserRole } from "../enums/user-role.enum";
-import { EUserStatus } from "../enums/user-status.enum";
-import { IUser } from "../types/user.types";
+import { EUserAccount, EUserRole, EUserStatus } from "../enums";
+import { IUser } from "../types";
 
 export const userSchema = new Schema(
   {

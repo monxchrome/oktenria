@@ -1,8 +1,7 @@
 import Joi from "joi";
 
-import { regexConstants } from "../config/constants/regex.constants";
-import { EUserAccount } from "../enums/user-account.enum";
-import { EUserStatus } from "../enums/user-status.enum";
+import { regexConstants } from "../config/constants";
+import { EUserAccount, EUserStatus } from "../enums";
 
 export class UserValidator {
   private static firstName = Joi.string().max(25).trim();

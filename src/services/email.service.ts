@@ -2,9 +2,9 @@ import EmailTemplates from "email-templates";
 import nodemailer, { Transporter } from "nodemailer";
 import * as path from "path";
 
-import { configs } from "../config/config";
-import { allTemplates } from "../config/constants/email.constants";
-import { EEmailEnum } from "../enums/email.enum";
+import { configs } from "../config";
+import { allTemplates } from "../config/constants";
+import { EEmailEnum } from "../enums";
 
 class EmailService {
   private transporter: Transporter;

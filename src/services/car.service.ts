@@ -1,9 +1,8 @@
 import { Types } from "mongoose";
 
-import { ApiError } from "../errors/api.error";
-import { Car } from "../models/Car.model";
-import { ICar } from "../types/car.types";
-import { IPaginationResponse, IQuery } from "../types/pagination.types";
+import { ApiError } from "../errors";
+import { Car } from "../models";
+import { ICar, IPaginationResponse, IQuery } from "../types";
 
 class CarService {
   public async getPagination(query: IQuery): Promise<IPaginationResponse<any>> {

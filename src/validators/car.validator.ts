@@ -1,14 +1,16 @@
 import Joi from "joi";
 
-import { EBodyType } from "../enums/car-body-type.enum";
-import { ECarBrand } from "../enums/car-brand.enum";
-import { ECarColor } from "../enums/car-color.enum";
-import { ECarCountry } from "../enums/car-country.enum";
-import { ECarFuel } from "../enums/car-fuel.enum";
-import { ECarPrice } from "../enums/car-price.enum";
-import { ECarState } from "../enums/car-state.enum";
-import { ETransportType } from "../enums/car-transport-type.enum";
-import { ECarType } from "../enums/car-type.enum";
+import {
+  EBodyType,
+  ECarBrand,
+  ECarColor,
+  ECarCountry,
+  ECarFuel,
+  ECarPrice,
+  ECarState,
+  ECarType,
+  ETransportType,
+} from "../enums";
 
 export class CarValidator {
   private static type = Joi.valid(...Object.values(ECarType));

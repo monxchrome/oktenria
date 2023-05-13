@@ -1,12 +1,10 @@
 import express, { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 
-import { configs } from "./config/config";
+import { configs } from "./config";
 import { cronRunner } from "./cron";
-import { authRouter } from "./router/auth.router";
-import { carRouter } from "./router/car.router";
-import { userRouter } from "./router/user.router";
-import { IError } from "./types/common.types";
+import { authRouter, carRouter, userRouter } from "./router";
+import { IError } from "./types";
 
 const app = express();
 

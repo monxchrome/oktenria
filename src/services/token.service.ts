@@ -1,14 +1,9 @@
 import * as jwt from "jsonwebtoken";
 
-import { configs } from "../config/config";
-import { EActionToken } from "../enums/action-token.enum";
-import { EToken } from "../enums/token-enum";
-import { ApiError } from "../errors/api.error";
-import {
-  IActionTokenPayload,
-  ITokenPair,
-  ITokenPayload,
-} from "../types/token.types";
+import { configs } from "../config";
+import { EActionToken, EToken } from "../enums";
+import { ApiError } from "../errors";
+import { IActionTokenPayload, ITokenPair, ITokenPayload } from "../types";
 
 class TokenService {
   public generateTokenPair(payload: ITokenPayload): ITokenPair {

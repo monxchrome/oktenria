@@ -1,7 +1,6 @@
-import { ApiError } from "../errors/api.error";
-import { User } from "../models/User.model";
-import { IPaginationResponse, IQuery } from "../types/pagination.types";
-import { IUser } from "../types/user.types";
+import { ApiError } from "../errors";
+import { User } from "../models";
+import { IPaginationResponse, IQuery, IUser } from "../types";
 
 class UserService {
   public async getPagination(
