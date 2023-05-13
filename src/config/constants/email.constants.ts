@@ -11,6 +11,10 @@ export const allTemplates: {
     subject: "Just following steps and all we be good",
     templateName: "change.password.email",
   },
+  [EEmailEnum.CHANGE_EMAIL]: {
+    subject: "Just following steps and all we be good",
+    templateName: "change.email",
+  },
   [EEmailEnum.FORGOT_PASSWORD]: {
     subject: "Just following steps and all we be good",
     templateName: "forgot.password.email",

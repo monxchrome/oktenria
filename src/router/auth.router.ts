@@ -46,3 +46,10 @@ router.post(
   authMiddleware.isValidChangePassword,
   authController.changePassword
 );
+
+router.post(
+  "/email/change",
+  authMiddleware.checkAccessToken,
+  authMiddleware.isValidChangeEmail,
+  authController.changeEmail
+);

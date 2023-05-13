@@ -1,17 +1,17 @@
-import {EActionToken} from "../enums/action-token.enum";
-import {EEmailEnum} from "../enums/email.enum";
-import {EUserAccount} from "../enums/user-account.enum";
-import {EUserStatus} from "../enums/user-status.enum";
-import {ApiError} from "../errors/api.error";
-import {Action} from "../models/Action.model";
-import {Token} from "../models/Token.model";
-import {User} from "../models/User.model";
-import {ICredentials} from "../types/auth.types";
-import {ITokenPair, ITokenPayload} from "../types/token.types";
-import {IUser} from "../types/user.types";
-import {emailService} from "./email.service";
-import {oauthService} from "./oauth.service";
-import {tokenService} from "./token.service";
+import { EActionToken } from "../enums/action-token.enum";
+import { EEmailEnum } from "../enums/email.enum";
+import { EUserAccount } from "../enums/user-account.enum";
+import { EUserStatus } from "../enums/user-status.enum";
+import { ApiError } from "../errors/api.error";
+import { Action } from "../models/Action.model";
+import { Token } from "../models/Token.model";
+import { User } from "../models/User.model";
+import { ICredentials } from "../types/auth.types";
+import { ITokenPair, ITokenPayload } from "../types/token.types";
+import { IUser } from "../types/user.types";
+import { emailService } from "./email.service";
+import { oauthService } from "./oauth.service";
+import { tokenService } from "./token.service";
 
 class AuthService {
   public async register(body: IUser): Promise<void> {
@@ -134,6 +134,32 @@ class AuthService {
       await User.updateOne({ _id: user._id }, { password: hashNewPassword });
 
       await emailService.sendEmail(user.email, EEmailEnum.CHANGE_PASSWORD);
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async changeEmail(
+    userId: string,
+    oldEmail: string,
+    newEmail: string,
+    password: string
+  ): Promise<void> {
+    try {
+      const user = await User.findById(userId);
+      const isMatched = await oauthService.compare(password, user.password);
+
+      if (!isMatched) {
+        throw new ApiError("Invalid email or password", 401);
+      }
+
+      if (oldEmail !== user.email) {
+        throw new ApiError("Invalid email or password", 401);
+      }
+
+      await User.updateOne({ _id: user._id }, { email: newEmail });
+
+      await emailService.sendEmail(user.email, EEmailEnum.CHANGE_EMAIL);
     } catch (e) {
       throw new ApiError(e.message, e.status);
     }

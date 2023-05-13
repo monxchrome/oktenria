@@ -78,6 +78,24 @@ class AuthMiddleware {
       next(e);
     }
   }
+
+  public async isValidChangeEmail(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { error } = UserValidator.changeEmail.validate(req.body);
+
+      if (error) {
+        throw new ApiError(error.message, 409);
+      }
+
+      next();
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export const authMiddleware = new AuthMiddleware();
