@@ -1,8 +1,10 @@
+import { UploadedFile } from "express-fileupload";
 import { Types } from "mongoose";
 
 import { ApiError } from "../errors";
-import { Car } from "../models";
-import { ICar, IPaginationResponse, IQuery } from "../types";
+import { Car, User } from "../models";
+import { ICar, IPaginationResponse, IQuery, IUser } from "../types";
+import { s3Service } from "./s3.service";
 
 class CarService {
   public async getPagination(query: IQuery): Promise<IPaginationResponse<any>> {
@@ -58,6 +60,20 @@ class CarService {
   public async delete(carId: string): Promise<void> {
     try {
       await Car.deleteOne({ _id: carId });
+    } catch (e) {
+      throw new ApiError(e.message, e.status);
+    }
+  }
+
+  public async uploadPhoto(file: UploadedFile, carId: string): Promise<IUser> {
+    try {
+      const filePath = await s3Service.uploadPhoto(file, "car", carId);
+
+      return await User.findByIdAndUpdate(
+        carId,
+        { photo: filePath },
+        { new: true }
+      );
     } catch (e) {
       throw new ApiError(e.message, e.status);
     }

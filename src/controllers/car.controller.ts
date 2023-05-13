@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { UploadedFile } from "express-fileupload";
 
 import { carService } from "../services";
 import { ICar, ICommonResponse, IQuery, ITokenPayload, IUser } from "../types";
@@ -84,6 +85,22 @@ class CarController {
         message: "Car has been deleted!",
         data: deleteCar,
       });
+    } catch (e) {
+      next(e);
+    }
+  }
+  public async uploadPhoto(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response<void>> {
+    try {
+      const { carId } = req.params;
+      const photo = req.files.photo as UploadedFile;
+
+      const car = carService.uploadPhoto(photo, carId);
+
+      return res.status(201).json(car);
     } catch (e) {
       next(e);
     }

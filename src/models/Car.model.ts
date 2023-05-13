@@ -118,7 +118,7 @@ export const carSchema = new Schema(
       required: [true, "REF: User is required"],
       ref: User,
     },
-    photos: {
+    photo: {
       type: String,
     },
   },

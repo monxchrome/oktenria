@@ -3,7 +3,6 @@ import { UploadedFile } from "express-fileupload";
 
 import { userService } from "../services";
 import { ICommonResponse, IQuery, IUser } from "../types";
-import {configs} from "../config";
 
 class UserController {
   public async getAll(
@@ -124,7 +123,6 @@ class UserController {
     next: NextFunction
   ): Promise<Response<void>> {
     try {
-      console.log(configs);
       const { userId } = req.params;
       const avatar = req.files.avatar as UploadedFile;
 

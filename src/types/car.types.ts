@@ -26,5 +26,6 @@ export interface ICar {
   number_of_seats: number;
   fuel: number;
   color: string;
+  photo?: string;
   user: IUser | Types.ObjectId;
 }

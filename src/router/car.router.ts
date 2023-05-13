@@ -41,3 +41,11 @@ router.delete(
   carMiddleware.getByIdOrThrow,
   carController.delete
 );
+
+router.put(
+  "/:carId/photo",
+  authMiddleware.checkAccessToken,
+  carMiddleware.isIdValid,
+  carMiddleware.getByIdOrThrow,
+  carController.uploadPhoto
+);
