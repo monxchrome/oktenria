@@ -95,7 +95,7 @@ class UserController {
   ): Promise<Response<ICommonResponse<IUser>>> {
     const { userId } = req.params;
 
-    const managerUser = await userService.managerRole(userId);
+    const managerUser = await userService.managerRole(userId, req.body);
 
     return res.json({
       message: "User has manager role",

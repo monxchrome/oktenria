@@ -65,6 +65,9 @@ export const userSchema = new Schema(
     premiumExpiration: {
       type: Date,
     },
+    auto_show: {
+      type: String,
+    },
   },
   { versionKey: false, timestamps: true }
 );

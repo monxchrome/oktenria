@@ -192,6 +192,24 @@ class UserMiddleware {
       next(e);
     }
   }
+
+  public async isAutoShow(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> {
+    try {
+      const { auto_show } = req.body;
+
+      if (auto_show === undefined || auto_show === null || !auto_show) {
+        throw new ApiError("auto_show is required", 404);
+      }
+
+      next();
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export const userMiddleware = new UserMiddleware();

@@ -65,9 +65,14 @@ class UserService {
     }
   }
 
-  public async managerRole(userId: string): Promise<void> {
+  public async managerRole(userId: string, body: IUser): Promise<void> {
     try {
-      await User.updateOne({ _id: userId }, { $set: { role: "manager" } });
+      const { auto_show } = body;
+
+      await User.updateOne(
+        { _id: userId },
+        { $set: { role: "manager", auto_show: auto_show } }
+      );
     } catch (e) {
       throw new ApiError(e.message, e.status);
     }

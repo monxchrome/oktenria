@@ -46,6 +46,7 @@ router.put(
   authMiddleware.checkAccessToken,
   userMiddleware.isIdValid,
   userMiddleware.getByIdOrThrow,
+  userMiddleware.isAutoShow,
   userController.getManager
 );
 
