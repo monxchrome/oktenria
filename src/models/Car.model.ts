@@ -129,6 +129,7 @@ export const carSchema = new Schema(
       type: String,
     },
     averagePrice: { type: Number },
+    averagePriceCity: { type: Number },
   },
   { versionKey: false, timestamps: true }
 );

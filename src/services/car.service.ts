@@ -43,7 +43,7 @@ class CarService {
 
   public async create(data: ICar, userId: string) {
     try {
-      const result = await Car.aggregate([
+      const result_all = await Car.aggregate([
         {
           $addFields: {
             currency: { $toDouble: "$currency" },
@@ -62,10 +62,36 @@ class CarService {
         },
       ]);
 
-      for (const { _id, avgPrice } of result) {
+      const result_city = await Car.aggregate([
+        {
+          $addFields: {
+            currency: { $toDouble: "$currency" },
+          },
+        },
+        {
+          $group: {
+            _id: "$city",
+            avgPrice: { $avg: "$currency" },
+          },
+        },
+        {
+          $addFields: {
+            avgPrice: { $round: ["$avgPrice", 2] },
+          },
+        },
+      ]);
+
+      for (const { _id, avgPrice } of result_all) {
         await Car.updateMany(
           { model: _id },
           { $set: { averagePrice: avgPrice } }
+        );
+      }
+
+      for (const { _id, avgPrice } of result_city) {
+        await Car.updateMany(
+          { city: _id },
+          { $set: { averagePriceCity: avgPrice } }
         );
       }
 
