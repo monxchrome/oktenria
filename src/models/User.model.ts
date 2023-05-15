@@ -9,6 +9,14 @@ export const userSchema = new Schema(
       type: Number,
       default: 0,
     },
+    count_of_day: {
+      type: Number,
+      default: 0,
+    },
+    count_of_month: {
+      type: Number,
+      default: 0,
+    },
     firstName: {
       type: String,
       required: [true, "Name is required"],

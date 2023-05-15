@@ -20,6 +20,7 @@ export class CarValidator {
   private static bodyType = Joi.valid(...Object.values(EBodyType));
   private static countryCar = Joi.valid(...Object.values(ECarCountry));
   private static brand = Joi.valid(...Object.values(ECarBrand));
+  private static model = Joi.string().max(255).min(1);
   private static year = Joi.number().min(1990).max(new Date().getFullYear());
   private static price = Joi.valid(...Object.values(ECarPrice));
   private static currency = Joi.number();
@@ -44,6 +45,7 @@ export class CarValidator {
     bodyType: this.bodyType.required(),
     countryCar: this.countryCar.required(),
     brand: this.brand.required(),
+    model: this.model.required(),
     year: this.year.required(),
     price: this.price.required(),
     currency: this.currency.required(),

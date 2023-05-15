@@ -180,7 +180,7 @@ class UserMiddleware {
 
       await User.findOneAndUpdate(
         { _id: userId },
-        { $inc: { count: 1 } },
+        { $inc: { count: 1, count_of_day: 1, count_of_month: 1 } },
         { upsert: true }
       );
 

@@ -49,6 +49,10 @@ export const carSchema = new Schema(
       enum: ECarBrand,
       required: [true, "brand is required"],
     },
+    model: {
+      type: String,
+      required: [true, "model is required"],
+    },
     year: {
       type: Number,
       required: [true, "year is required"],
@@ -121,6 +125,7 @@ export const carSchema = new Schema(
     photo: {
       type: String,
     },
+    averagePrice: { type: Number },
   },
   { versionKey: false, timestamps: true }
 );

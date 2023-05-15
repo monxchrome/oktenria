@@ -43,6 +43,32 @@ class CarService {
 
   public async create(data: ICar, userId: string) {
     try {
+      const result = await Car.aggregate([
+        {
+          $addFields: {
+            currency: { $toDouble: "$currency" },
+          },
+        },
+        {
+          $group: {
+            _id: "$model",
+            avgPrice: { $avg: "$currency" },
+          },
+        },
+        {
+          $addFields: {
+            avgPrice: { $round: ["$avgPrice", 2] },
+          },
+        },
+      ]);
+
+      for (const { _id, avgPrice } of result) {
+        await Car.updateMany(
+          { model: _id },
+          { $set: { averagePrice: avgPrice } }
+        );
+      }
+
       return await Car.create({ ...data, user: new Types.ObjectId(userId) });
     } catch (e) {
       throw new ApiError(e.message, e.status);
@@ -77,6 +103,26 @@ class CarService {
     } catch (e) {
       throw new ApiError(e.message, e.status);
     }
+  }
+
+  public async avg_price(model: string): Promise<void> {
+    const aggregationResult = await Car.aggregate([
+      { $match: { model } },
+      {
+        $group: {
+          _id: null,
+          totalPrices: { $sum: "$price" },
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    const totalPrices = aggregationResult[0]?.totalPrices || 0;
+    const count = aggregationResult[0]?.count || 0;
+
+    const avgPrice = count > 0 ? totalPrices / count : 0;
+
+    await Car.updateMany({ model }, { avg_price: avgPrice });
   }
 }
 

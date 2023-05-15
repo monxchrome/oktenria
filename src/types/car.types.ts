@@ -3,7 +3,7 @@ import { Types } from "mongoose";
 import { IUser } from "./user.types";
 
 export interface ICar {
-  _id?: string;
+  _id?: Types.ObjectId;
   type: string;
   VINCode: boolean;
   stateNumber: boolean;
@@ -11,6 +11,7 @@ export interface ICar {
   bodyType: string;
   countryCar: string;
   brand: string;
+  model: string;
   year: number;
   price: string;
   currency: number;
@@ -27,5 +28,6 @@ export interface ICar {
   fuel: number;
   color: string;
   photo?: string;
+  avg_price?: number;
   user: IUser | Types.ObjectId;
 }
