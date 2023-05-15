@@ -29,6 +29,9 @@ export const carSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    description: {
+      type: String,
+    },
     transportType: {
       type: String,
       enum: ETransportType,

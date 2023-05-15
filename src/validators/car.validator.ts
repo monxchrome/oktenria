@@ -16,6 +16,7 @@ export class CarValidator {
   private static type = Joi.valid(...Object.values(ECarType));
   private static VINCode = Joi.boolean();
   private static stateNumber = Joi.boolean();
+  private static description = Joi.string().max(255);
   private static transportType = Joi.valid(...Object.values(ETransportType));
   private static bodyType = Joi.valid(...Object.values(EBodyType));
   private static countryCar = Joi.valid(...Object.values(ECarCountry));
@@ -41,6 +42,7 @@ export class CarValidator {
     type: this.type,
     VINCode: this.VINCode,
     stateNumber: this.stateNumber,
+    description: this.description,
     transportType: this.transportType.required(),
     bodyType: this.bodyType.required(),
     countryCar: this.countryCar.required(),
@@ -64,6 +66,7 @@ export class CarValidator {
   });
 
   static update = Joi.object({
+    description: this.description,
     bodyType: this.bodyType,
     year: this.year,
     price: this.price,

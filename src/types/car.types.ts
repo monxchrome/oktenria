@@ -7,6 +7,7 @@ export interface ICar {
   type: string;
   VINCode: boolean;
   stateNumber: boolean;
+  description: string;
   transportType: string;
   bodyType: string;
   countryCar: string;
