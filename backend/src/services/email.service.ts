@@ -21,7 +21,7 @@ class EmailService {
 
     this.templateParser = new EmailTemplates({
       views: {
-        root: path.join(process.cwd(), "src", "static", "templates"),
+        root: path.join(process.cwd(), "static", "templates"),
         options: {
           extension: "hbs",
         },

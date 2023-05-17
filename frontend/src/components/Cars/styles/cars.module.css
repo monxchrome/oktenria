@@ -1,0 +1,45 @@
+.Father{
+    width: 60vw;
+    position: relative;
+    left: 25vh;
+    top: 15vh;
+}
+
+.Wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.CarDiv {
+    position: relative;
+    top: 10vh
+}
+
+.PetCars {
+    margin-left: 5vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.PetCars > div > div > img {
+    width: 30vh;
+    height: 20vh;
+}
+
+.LeftArrow {
+    position: relative;
+    top: 22vh;
+    right: 10vw;
+    width: 5vw;
+    height: 7vh;
+}
+
+.RightArrow {
+    position: relative;
+    top: 22vh;
+    left: 5vw;
+    width: 5vw;
+    height: 7vh;
+}
