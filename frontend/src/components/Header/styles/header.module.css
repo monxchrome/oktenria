@@ -26,3 +26,19 @@
 .Text {
     font-family: 'Quicksand', sans-serif;
 }
+
+.Login {
+    position: relative;
+    top: 3vh;
+    font-family: 'Quicksand', sans-serif;
+    text-decoration:none;
+}
+
+.Register {
+    font-family: 'Quicksand', sans-serif;
+    text-decoration:none;
+}
+
+a {
+    text-decoration:none;
+}

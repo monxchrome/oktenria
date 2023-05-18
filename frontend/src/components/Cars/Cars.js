@@ -16,9 +16,6 @@ const Cars = () => {
         carsService.getAll().then(({data}) => setCars(data.data));
     }, [setCars])
 
-    const leftArrow = 'https://cdn-icons-png.flaticon.com/512/271/271220.png'
-    const rightArrow = 'https://cdn-icons-png.flaticon.com/512/32/32213.png'
-
     const settings = {
         infinite: true,
         speed: 500,

@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.loginBox {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    margin: 0 auto;
+    animation-name: fade-in;
+    animation-duration: 1s;
+}
+.loginBox h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+}
+.loginBox input[type="text"],
+.loginBox input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.loginBox input[type="submit"] {
+    background-color: #ff5f6d;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.loginBox input[type="submit"]:hover {
+    background-color: #e53d59;
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .login-box {
+        padding: 20px;
+    }
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+        padding: 8px;
+    }
+    .login-box input[type="submit"] {
+        padding: 8px;
+    }
+}

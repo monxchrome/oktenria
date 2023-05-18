@@ -1,9 +1,16 @@
 const baseURL = '/api'
 
+const auth = '/auth'
+
 const urls = {
-    users: '/users',
+    auth: {
+        login: `${auth}/login`,
+        refresh: `${auth}/refresh`,
+        me: `${auth}/me`,
+        register: `${auth}/register`
+    },
     cars: '/cars',
-    auth: '/auth'
+    users: '/users'
 }
 
 export {
