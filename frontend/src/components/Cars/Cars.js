@@ -2,6 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {carsService} from "../../services/carsService";
 import Car from "./Car";
 import css from './styles/cars.module.css'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CarSlider from "./CarSlider";
 
 const Cars = () => {
     const [cars, setCars] = useState([]);
@@ -15,12 +19,17 @@ const Cars = () => {
     const leftArrow = 'https://cdn-icons-png.flaticon.com/512/271/271220.png'
     const rightArrow = 'https://cdn-icons-png.flaticon.com/512/32/32213.png'
 
+    const settings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        centerMode: true,
+    };
+
     return (
         <div className={css.Father}>
             <div className={css.Wrap}>
-                <div>
-                    <img src={leftArrow} className={css.LeftArrow} alt=""/>
-                </div>
                 <div className={css.CarDiv}>
                     {firstCar.map(item => <Car key={item._id} cars={item}/>)}
                 </div>
@@ -29,9 +38,11 @@ const Cars = () => {
                         .slice(1)
                         .map(item => <Car key={item._id} cars={item}/>)}
                 </div>
-                <div>
-                    <img src={rightArrow} className={css.RightArrow} alt=""/>
-                </div>
+            </div>
+            <div className={css.Slider}>
+                <Slider {...settings} centerPadding="270px">
+                        {cars.map(item => <CarSlider key={item._id} cars={item}/>)}
+                </Slider>
             </div>
         </div>
     );

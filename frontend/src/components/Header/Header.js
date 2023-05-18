@@ -10,12 +10,12 @@ const Header = () => {
                 <h3 className={css.LogoText}>OktenRIA</h3>
             </div>
                 <div>
-                    <h4>
+                    <h4 className={css.Text}>
                         Used autos
                     </h4>
                 </div>
                 <div>
-                    <h4>
+                    <h4 className={css.Text}>
                         New autos
                     </h4>
                 </div>

@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Akshar');
+@import url('https://fonts.googleapis.com/css2?family=B612:wght@400;700&family=Roboto:ital,wght@1,700&display=swap');
+
+.Father {
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+.Photo {
+    border: 3px inset #C1C1C1;
+    width: 30vh;
+    height: 20vh;
+}
+
+.Wrap {
+    display: flex;
+}
+
+.BrandDiv{
+    margin-left: 1vh;
+}
+
+.Brand {
+    color: dodgerblue;
+    font-family: 'Akshar';
+    margin: 0;
+}
+
+.PriceDiv {
+    display: flex;
+    margin-top: 1vh;
+    margin-left: 1vh;
+}
+
+.Price {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin: 0;
+    color: darkcyan;
+}
+
+.Detail {
+    font-family: 'Akshar';
+    margin: 5px 5px 5px 2vh;
+}
