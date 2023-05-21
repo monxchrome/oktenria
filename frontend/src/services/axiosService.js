@@ -38,5 +38,6 @@ axiosService.interceptors.response.use((config) => {
     })
 
 export {
-    axiosService
+    axiosService,
+    history
 }

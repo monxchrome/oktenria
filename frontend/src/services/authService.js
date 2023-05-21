@@ -1,11 +1,11 @@
 import {axiosService} from "./axiosService";
 import {urls} from "../config/urls";
 
-const accessToken =  'access'
-const refreshToken = 'refresh'
+const accessTokenKey =  'access'
+const refreshTokenKey = 'refresh'
 
 const authService = {
-    login: async (data) => {
+    login: async function (data) {
         try {
             const response = await axiosService.post(urls.auth.login, data)
 
@@ -19,7 +19,7 @@ const authService = {
         }
     },
 
-    register: async (data) => {
+    register: async function (data) {
         try {
             const response = await axiosService.post(urls.auth.register, data)
 
@@ -43,17 +43,17 @@ const authService = {
         return response
     },
 
-    setTokens: ({access, refresh}) => {
-        localStorage.setItem(accessToken, access)
-        localStorage.setItem(refreshToken, refresh)
+    setTokens: ({accessToken, refreshToken}) => {
+        localStorage.setItem(accessTokenKey, accessToken)
+        localStorage.setItem(refreshTokenKey, refreshToken)
     },
-    getAccessToken: () => localStorage.getItem(accessToken),
-    getRefreshToken: () => localStorage.getItem(refreshToken),
+    getAccessToken: () => localStorage.getItem(accessTokenKey),
+    getRefreshToken: () => localStorage.getItem(refreshTokenKey),
     deleteTokens: () => {
-        localStorage.removeItem(accessToken)
-        localStorage.removeItem(refreshToken)
+        localStorage.removeItem(accessTokenKey)
+        localStorage.removeItem(refreshTokenKey)
     },
-    isAuth: () => !! localStorage.getItem(accessToken)
+    isAuth: () => !! localStorage.getItem(accessTokenKey)
 }
 
 export {

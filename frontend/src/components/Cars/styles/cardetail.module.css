@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Akshar');
+@import url('https://fonts.googleapis.com/css2?family=B612:wght@400;700&family=Roboto:ital,wght@1,700&display=swap');
+
+.Father {
+    display: flex;
+    margin-top: 5vh;
+}
+
+.Column1 {
+    margin-left: 15vw;
+}
+.BrandDiv {
+
+}
+
+.Brand {
+    margin: 0;
+    color: darkgray;
+    font-family: 'Akshar';
+}
+
+.Column2 {
+    margin-left: 3vw;
+}
+
+.PhotoDiv {
+    margin-top: 5vw;
+}
+
+.Photo {
+    width: 35vw;
+    height: 45vh;
+}
+
+.Price {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: darkcyan;
+}
+
+.Fuel {
+    font-family: 'Akshar';
+}
+
+.Brand2 {
+    margin: 0;
+    color: #000000;
+    font-family: 'Akshar';
+}
+
+.NOD {
+    color: #000000;
+    font-family: 'Akshar';
+}
+
+.Details {
+    display: flex;
+    border: 1px solid #CDCDCD;
+    border-radius: 10px;
+}
+
+.TextDiv{
+    margin-left: 1vw;
+}
+
+.TextDiv2{
+    margin-left: 13vw;
+}
+
+.Text{
+    font-family: 'Akshar';
+}
+
+.Details2 {
+    display: flex;
+    border: 1px solid #CDCDCD;
+    border-radius: 10px;
+}
+
+.Column3 {
+    margin-left: 3vw;
+}

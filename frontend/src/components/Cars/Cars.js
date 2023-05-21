@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CarSlider from "./CarSlider";
+import {Navigate} from "react-router-dom";
 
 const Cars = () => {
     const [cars, setCars] = useState([]);
